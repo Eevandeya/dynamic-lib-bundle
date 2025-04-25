@@ -1,0 +1,10 @@
+# IDEs
+.idea/
+.vscode/
+.vs/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
