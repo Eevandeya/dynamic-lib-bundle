@@ -75,7 +75,7 @@ double generate_and_print_table_row(
     }
 
     print_table_row(status,
-        *first_row_value, target_value, series_value, delta(series_value, target_value),
+        *first_row_value, series_value, target_value, delta(series_value, target_value),
         local_color, LIB_COLOR);
 
     return series_value;
