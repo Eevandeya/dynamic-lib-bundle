@@ -17,7 +17,7 @@ namespace math_ut {
     }
     double alexandrov_log(double eps, double x=0, double a=0, double next_el=0, size_t i=2) {
         double cur_el;
-        if (i > 1000) {
+        if (i > 10000) {
             return NAN;
         }
         if (i == 2) {
@@ -46,26 +46,18 @@ const char* get_function_name()
     auto fn = "log(x + 1)";
     return fn;
 }
+
 double generate_and_print_table_row(double x, double eps, double a, RowType row_type, Color external_color, MyCallback callback){
     double my_func = math_ut::alexandrov_log(eps, x, a);
     double math_func = myf_math(x, a);
     double delta = sqrt(abs(pow(math_func, 2) - pow(my_func, 2)));
 
     if (row_type == RowType::TABLE_1_ROW) {
-        callback(std::isnan(math_func) || std::isinf(abs(math_func)) ? EvalStatus::EVAL_ERROR : EvalStatus::EVAL_SUCCESS, x, my_func, math_func, delta, external_color, LOCAL_COLOR);
+        callback(std::isnan(abs(delta)) || std::isinf(abs(delta)) ? EvalStatus::EVAL_ERROR : EvalStatus::EVAL_SUCCESS, x, my_func, math_func, delta, external_color, LOCAL_COLOR);
     }
     else{
-        callback(std::isnan(math_func) || std::isinf(abs(math_func)) ? EvalStatus::EVAL_ERROR : EvalStatus::EVAL_SUCCESS, eps, my_func, math_func, delta, external_color, LOCAL_COLOR);
+        callback(std::isnan(abs(delta)) || std::isinf(abs(delta)) ? EvalStatus::EVAL_ERROR : EvalStatus::EVAL_SUCCESS, eps, my_func, math_func, delta, external_color, LOCAL_COLOR);
     }
     return my_func;
 }
 
-// std::string Handle::setBackgroundColor(int color) {
-//     return "\033[38;5;" + std::to_string(color) + "m";
-// }
-// std::string Handle::setForegroundColor(int color) {
-//     return "\033[48;5;" + std::to_string(color) + "m";
-// }
-// std::string Handle::resetColor() {
-//     return "\033[0m";
-// }
