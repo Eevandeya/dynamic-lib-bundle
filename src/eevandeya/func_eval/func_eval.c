@@ -75,12 +75,14 @@ double generate_and_print_table_row(
 
     const double *first_row_value = row_type == TABLE_1_ROW ? &x : &epsilon;
 
-    if (isnan(series_value) || isnan(target_value)) {
+    const double d = delta(series_value, target_value);
+    if (isnan(series_value) || isnan(target_value) || isnan(d)
+        || isinf(series_value) || isinf(target_value) || isinf(d)) {
         status = EVAL_ERROR;
     }
 
     print_table_row(status,
-        *first_row_value, series_value, target_value, delta(series_value, target_value),
+        *first_row_value, series_value, target_value, d,
         local_color, LIB_COLOR);
 
     return series_value;
