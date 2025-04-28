@@ -2,6 +2,8 @@
 
 #include <math.h>
 
+#define MAX_ITERATIONS 1000000
+
 const Color LIB_COLOR = {
     .text = 208,
     .background = 88
@@ -35,6 +37,9 @@ double calculate_cos_with_series(const double x, const double epsilon) {
 
     int n = 1;
     while (fabs(f2 - f1) >= epsilon) {
+        if (n >= MAX_ITERATIONS) {
+            return NAN;
+        }
         f1 = f2;
 
         current_term *= increment(x, n);
