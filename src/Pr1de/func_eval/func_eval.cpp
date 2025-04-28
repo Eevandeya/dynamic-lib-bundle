@@ -28,11 +28,14 @@ namespace math_ut {
         }
         double next = cur_el * math_ut::next_el(i, x);
 
-        if (abs(next - cur_el) < eps && i == 2)
-        {
-            return cur_el;
-        }
         if (abs(next - cur_el) < eps){
+             if (abs(eps) > 1 && abs(cur_el) > 1)
+             {
+                   return NAN;
+             }
+             if (abs(eps) > 1 && abs(cur_el) < 1){
+                 return cur_el;
+             }
             return next_el;
         }
         return cur_el + alexandrov_log(eps, x, a, next, ++i);
