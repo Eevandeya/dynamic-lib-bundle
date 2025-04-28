@@ -35,5 +35,5 @@ extern "C" MYDLL_API double generate_and_print_table_row(
     double eps,
     double a,
     RowType row_type,
-    Color external_color,
+    Color local_color,
     MyCallback callback);
